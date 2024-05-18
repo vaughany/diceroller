@@ -2,6 +2,10 @@
 
 [![License](https://img.shields.io/badge/Licence-GNU%20GPL%20v3-blue)](COPYING)
 [![Go Report Card](https://goreportcard.com/badge/github.com/vaughany/diceroller)](https://goreportcard.com/report/github.com/vaughany/diceroller)
+[![Go Test](https://github.com/likexian/whois/actions/workflows/gotest.yaml/badge.svg)](https://github.com/likexian/whois/actions/workflows/gotest.yaml)
+[![CodeQL](https://github.com/vaughany/diceroller/actions/workflows/codeql.yml/badge.svg)](https://github.com/vaughany/diceroller/actions/workflows/codeql.yml)
+![Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fvaughany%2Fcc4ca9197c72abf20858c15ea662adf6%2Fraw%2F4ea9baaa384e73fa83b2e2ffa46f8cd68c135eb3%2Fdiceroller-go-coverage.json
+)
 
 [Diceroller](https://github.com/vaughany/diceroller): A Go module to parse and simulate rolling dice for TTRPGs.
 
