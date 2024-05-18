@@ -6,6 +6,8 @@
 [![CodeQL](https://github.com/vaughany/diceroller/actions/workflows/codeql.yml/badge.svg)](https://github.com/vaughany/diceroller/actions/workflows/codeql.yml)
 ![Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fvaughany%2Fcc4ca9197c72abf20858c15ea662adf6%2Fraw%2F4ea9baaa384e73fa83b2e2ffa46f8cd68c135eb3%2Fdiceroller-go-coverage.json
 )
+![CoverageDetails](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fvaughany%2Fcc4ca9197c72abf20858c15ea662adf6%2Fraw%2F4ea9baaa384e73fa83b2e2ffa46f8cd68c135eb3%2Fdiceroller-go-tests.json
+)
 
 [Diceroller](https://github.com/vaughany/diceroller): A Go module to parse and simulate rolling dice for TTRPGs.
 
