@@ -1,6 +1,7 @@
 # Diceroller
 
 [![License](https://img.shields.io/badge/Licence-GNU%20GPL%20v3-blue)](COPYING)
+[![Go Report Card](https://goreportcard.com/badge/github.com/vaughany/diceroller)](https://goreportcard.com/report/github.com/vaughany/diceroller)
 
 [Diceroller](https://github.com/vaughany/diceroller): A Go module to parse and simulate rolling dice for TTRPGs.
 
