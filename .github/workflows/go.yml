@@ -43,6 +43,9 @@ jobs:
     - name: Coverage
       run: go tool cover -func=coverage.out | tee test.out
 
+    - name: where is the file
+      run: pwd && ls -hl test.out
+
     - name: CI Badges
       uses: GaelGirodon/ci-badges-action@v1.3.0
       with:
