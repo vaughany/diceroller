@@ -39,9 +39,11 @@ jobs:
 
     - name: Test
       run: go test -v -vet all -race -coverprofile=coverage.out -covermode=atomic ./... 
-      run: go tool cover -func=coverage.out | tee test.out
 
     - name: Coverage
+      run: go tool cover -func=coverage.out | tee test.out
+
+    - name: Coverage Badge
       uses: gaelgirodon/ci-badges-action@v1
       with:
         gist-id: ${{ secrets.GIST_ID }}
