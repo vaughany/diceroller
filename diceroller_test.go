@@ -55,7 +55,7 @@ func TestRollOne(t *testing.T) {
 // BenchmarkRollOne benchmarks diceroller.RollOne.
 func BenchmarkRollOne(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		RollOne(rollOneTests[1].got)
+		_, _ = RollOne(rollOneTests[1].got)
 	}
 }
 
@@ -82,7 +82,7 @@ func TestRoll(t *testing.T) {
 // BenchmarkRoll benchmarks diceroller.Roll.
 func BenchmarkRoll(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Roll(rollTests[0].got...)
+		_, _ = Roll(rollTests[0].got...)
 	}
 }
 
@@ -109,7 +109,7 @@ func TestRollTotal(t *testing.T) {
 // BenchmarkRollTotal benchmarks diceroller.RollTotal.
 func BenchmarkRollTotal(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		RollTotal(rollTotalTests[0].got...)
+		_, _ = RollTotal(rollTotalTests[0].got...)
 	}
 }
 
@@ -136,7 +136,7 @@ func TestRollDetails(t *testing.T) {
 // BenchmarkRollTotal benchmarks diceroller.RollTotal.
 func BenchmarkRollDetails(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		RollDetails(rollTotalTests[0].got...)
+		_, _ = RollDetails(rollTotalTests[0].got...)
 	}
 }
 
@@ -191,7 +191,7 @@ func TestParse(t *testing.T) {
 // BenchmarkParse benchmarks diceroller.Parse.
 func BenchmarkParse(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Parse(parseTests[2].got)
+		_, _ = Parse(parseTests[2].got)
 	}
 }
 
