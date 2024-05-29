@@ -255,7 +255,10 @@ func prettify(input DiceRoll, full bool) (output string) {
 		output += fmt.Sprintf(" (-%.0f)", math.Abs(float64(input.Modifier)))
 	}
 
-	output += fmt.Sprintf(" = %d", total+input.Modifier)
+	// Rolling 1Dn with no modifier looks weird when output as e.g. `1d6: 1 = 1.` so we handle that here.
+	if len(totalsStr) > 1 || input.Modifier != 0 {
+		output += fmt.Sprintf(" = %d", total+input.Modifier)
+	}
 
 	return
 }

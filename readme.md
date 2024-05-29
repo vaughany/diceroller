@@ -4,10 +4,8 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/vaughany/diceroller)](https://goreportcard.com/report/github.com/vaughany/diceroller)
 [![Go Test](https://github.com/likexian/whois/actions/workflows/gotest.yaml/badge.svg)](https://github.com/likexian/whois/actions/workflows/gotest.yaml)
 [![CodeQL](https://github.com/vaughany/diceroller/actions/workflows/codeql.yml/badge.svg)](https://github.com/vaughany/diceroller/actions/workflows/codeql.yml)
-![Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fvaughany%2Fcc4ca9197c72abf20858c15ea662adf6%2Fraw%2F4ea9baaa384e73fa83b2e2ffa46f8cd68c135eb3%2Fdiceroller-go-coverage.json
-)
-![CoverageDetails](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fvaughany%2Fcc4ca9197c72abf20858c15ea662adf6%2Fraw%2F4ea9baaa384e73fa83b2e2ffa46f8cd68c135eb3%2Fdiceroller-go-tests.json
-)
+![Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fvaughany%2Fcc4ca9197c72abf20858c15ea662adf6%2Fraw%2F4ea9baaa384e73fa83b2e2ffa46f8cd68c135eb3%2Fdiceroller-go-coverage.json)
+![CoverageDetails](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fvaughany%2Fcc4ca9197c72abf20858c15ea662adf6%2Fraw%2F4ea9baaa384e73fa83b2e2ffa46f8cd68c135eb3%2Fdiceroller-go-tests.json)
 
 [Diceroller](https://github.com/vaughany/diceroller): A Go module to parse and simulate rolling dice for TTRPGs.
 
@@ -58,6 +56,8 @@ parse, _ := diceroller.Parse("roll 4d6 +4 please", "and 1d6")
 fmt.Printf("%#v\n", parse)
 // []string{"4d6+4", "1d6"}
 ```
+
+**Note:** You can put multiple rolls in a string and this package will attempt to parse them, but be sure to separate them with somthing other than white space, e.g. `"1d6, 2d8"` (comma) or `"1d6 and 2d8"` (the word 'and') are both acceptable. `"1d6 2d8"` will be parsed as `1d62`.
 
 
 ### Rolling 
@@ -113,9 +113,11 @@ fmt.Printf("%#v\n", rollDetails)
 
 ### Prettifying
 
-`Prettify()`: Prettify takes in details of one or more rolls and outputs a slice of 'pretty' strings.
+For all `Prettify...()` functions, the modifier is omitted if it is zero, and appears in brackets if present.
 
-**Note:** the modifier is omitted if it is zero, and appears in brackets if present.
+Additionally, if only one dice is rolled and there's no modifier, the equals sign `=` and total are omitted, because e.g. `6 = 6` is redundant and ugly.
+
+`Prettify()`: Prettify takes in details of one or more rolls and outputs a slice of 'pretty' strings.
 
 ```go
 rollDetails, _ := diceroller.RollDetails("3d6-2", "4d8/2")
@@ -127,8 +129,6 @@ fmt.Printf("%#v\n", prettify)
 
 `PrettifyFull()`: PrettifyFull takes in details of one or more rolls and outputs a slice of 'pretty' strings, including the discovered roll.
 
-**Note:** the modifier is omitted if it is zero, and appears in brackets if present.
-
 ```go
 rollDetails, _ := diceroller.RollDetails("3d6-2", "4d8/2")
 prettifyFull := diceroller.PrettifyFull(rollDetails)
@@ -139,8 +139,6 @@ fmt.Printf("%#v\n", prettifyFull)
 
 `PrettifyOne()`: PrettifyOne takes in details of one roll and outputs a 'pretty' string.
 
-**Note:** the modifier is omitted if it is zero, and appears in brackets if present.
-
 ```go
 rollDetails, _ := diceroller.RollDetails("3d6-2")
 prettifyOne := diceroller.PrettifyOne(rollDetails[0])
@@ -150,8 +148,6 @@ fmt.Printf("%#v\n", prettifyOne)
 
 
 `PrettifyOneFull`: PrettifyOneFull takes in details of one roll and outputs a 'pretty' string, including the discovered roll.
-
-**Note:** the modifier is omitted if it is zero, and appears in brackets if present.
 
 ```go
 rollDetails, _ := diceroller.RollDetails("3d6-2")
