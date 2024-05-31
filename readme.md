@@ -211,6 +211,15 @@ Roll 5: 1d20+3: 18 (+3) = 21.
 
 ## History
 
+See the [commit history](https://github.com/vaughany/diceroller/commits/main/) or `git log` for full details.
+
+* **v0.1.8 (2024-05-31):** Added `PrettifyHTML...` functions
+* **v0.1.7 (2024-05-29):** Changed the output logic around rolling one dice without modifiers so that we don't get a '6 = 6' output, which is both redundant and ugly.
+* **v0.1.6 (2024-05-19):** Another badge.
+* **v0.1.5 (2024-05-19):** Added some badges to the readme.
+* **v0.1.4 (2024-05-18):** More linting changes.
+* **v0.1.3 (2024-05-18):** Handling details and errors returned by the benchmarking functions, in order to keep the linters happy.
+* **v0.1.2 (2024-05-18):** Added tests.
 * **v0.1.1 (2024-05-13):** Added the readme.
 * **v0.1.0 (2024-05-13):** Initial release.
 
