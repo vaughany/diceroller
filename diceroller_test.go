@@ -293,3 +293,60 @@ func BenchmarkPrettifyOneFull(b *testing.B) {
 		PrettifyOneFull(prettifyOneFullTests[0].got)
 	}
 }
+
+type prettifyHTMLTest struct {
+	got  []DiceRoll
+	want []string
+}
+
+var prettifyHTMLTests = []prettifyHTMLTest{
+	{[]DiceRoll{{"1d6", 6, 1, 0, []int{4}, 4}}, []string{"<strong>4</strong>"}},
+	{[]DiceRoll{{"2d6", 6, 2, 0, []int{1, 2}, 3}}, []string{"<strong>1 + 2 = 3</strong>"}},
+	{[]DiceRoll{{"3d6+4", 6, 3, 4, []int{1, 2, 3}, 4}}, []string{"<strong>1 + 2 + 3 (+4) = 10</strong>"}},
+}
+
+// TestPrettifyHTML calls diceroller.PrettifyHTML with one valid DiceRoll struct, checking for valid return values.
+func TestPrettifyHTML(t *testing.T) {
+	for _, test := range prettifyHTMLTests {
+		output := PrettifyHTML(test.got)
+
+		if !reflect.DeepEqual(output, test.want) {
+			t.Errorf("have %v, wanted %v", output, test.want)
+		}
+	}
+}
+
+// BenchmarkPrettifyHTML benchmarks diceroller.PrettifyOneFull.
+func BenchmarkPrettifyHTML(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PrettifyHTML(prettifyHTMLTests[0].got)
+	}
+}
+
+var prettifyHTMLFullTests = []prettifyHTMLTest{
+	{[]DiceRoll{{"1d6", 6, 1, 0, []int{4}, 4}}, []string{"<strong>1d6:</strong> <em>4</em>"}},
+	{[]DiceRoll{{"2d6", 6, 2, 0, []int{1, 2}, 3}}, []string{"<strong>2d6:</strong> <em>1 + 2 = 3</em>"}},
+	{[]DiceRoll{{"3d6+4", 6, 3, 4, []int{1, 2, 3}, 4}}, []string{"<strong>3d6+4:</strong> <em>1 + 2 + 3 (+4) = 10</em>"}},
+	{
+		[]DiceRoll{{"1d6", 6, 1, 0, []int{4}, 4}, {"2d6", 6, 2, 0, []int{1, 2}, 3}, {"3d6+4", 6, 3, 4, []int{1, 2, 3}, 4}},
+		[]string{"<strong>1d6:</strong> <em>4</em>", "<strong>2d6:</strong> <em>1 + 2 = 3</em>", "<strong>3d6+4:</strong> <em>1 + 2 + 3 (+4) = 10</em>"},
+	},
+}
+
+// TestPrettifyHTML calls diceroller.PrettifyHTML with one valid DiceRoll struct, checking for valid return values.
+func TestPrettifyFullHTML(t *testing.T) {
+	for _, test := range prettifyHTMLFullTests {
+		output := PrettifyHTMLFull(test.got)
+
+		if !reflect.DeepEqual(output, test.want) {
+			t.Errorf("have %v, wanted %v", output, test.want)
+		}
+	}
+}
+
+// BenchmarkPrettifyHTML benchmarks diceroller.PrettifyOneFull.
+func BenchmarkPrettifyFullHTML(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PrettifyHTMLFull(prettifyHTMLFullTests[0].got)
+	}
+}

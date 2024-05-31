@@ -158,7 +158,7 @@ func PrettifyFull(input []DiceRoll) (output []string) {
 }
 
 /*
- * Prettify takes in a DiceRoll struct and returns a string with the rolls displayed nicely.
+ * PrettifyOne takes in one DiceRoll struct and returns a string with the rolls displayed nicely.
  * e.g. "1 + 2 + 3 + 4 = 10"
  */
 func PrettifyOne(input DiceRoll) (output string) {
@@ -166,11 +166,27 @@ func PrettifyOne(input DiceRoll) (output string) {
 }
 
 /*
- * Prettify takes in a DiceRoll struct and returns a string with the discovered roll and rolls displayed nicely.
+ * PrettifyOneFull takes in one DiceRoll struct and returns a string with the discovered roll and rolls displayed nicely.
  * e.g. "4d4: 1 + 2 + 3 + 4 = 10"
  */
 func PrettifyOneFull(input DiceRoll) (output string) {
 	return prettify(input, true)
+}
+
+/*
+ * PrettifyHTML takes in a DiceRoll struct and returns a string with the discovered roll and rolls displayed nicely.
+ * e.g. "<strong>1 + 2 + 3 + 4 = 10</strong>"
+ */
+func PrettifyHTML(input []DiceRoll) (output []string) {
+	return addHTML(Prettify(input))
+}
+
+/*
+ * PrettifyHTMLFull takes in a DiceRoll struct and returns a string with the discovered roll and rolls displayed nicely.
+ * e.g. "<strong>4d4:</strong> <em>1 + 2 + 3 + 4 = 10</em>"
+ */
+func PrettifyHTMLFull(input []DiceRoll) (output []string) {
+	return addHTML(PrettifyFull(input))
 }
 
 /*
@@ -258,6 +274,25 @@ func prettify(input DiceRoll, full bool) (output string) {
 	// Rolling 1Dn with no modifier looks weird when output as e.g. `1d6: 1 = 1.` so we handle that here.
 	if len(totalsStr) > 1 || input.Modifier != 0 {
 		output += fmt.Sprintf(" = %d", total+input.Modifier)
+	}
+
+	return
+}
+
+/*
+ * addHTML splits a string on a colon (if present) and adds html to the result to differentiate
+ *   between the roll and the result.
+ */
+func addHTML(input []string) (output []string) {
+	output = make([]string, len(input))
+
+	for i, in := range input {
+		splits := strings.Split(in, `: `)
+		if len(splits) == 1 {
+			output[i] = fmt.Sprintf("<strong>%s</strong>", splits[0])
+		} else {
+			output[i] = fmt.Sprintf("<strong>%s:</strong> <em>%s</em>", splits[0], splits[1])
+		}
 	}
 
 	return

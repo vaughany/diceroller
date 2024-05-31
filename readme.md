@@ -147,7 +147,7 @@ fmt.Printf("%#v\n", prettifyOne)
 ```
 
 
-`PrettifyOneFull`: PrettifyOneFull takes in details of one roll and outputs a 'pretty' string, including the discovered roll.
+`PrettifyOneFull()`: PrettifyOneFull takes in details of one roll and outputs a 'pretty' string, including the discovered roll.
 
 ```go
 rollDetails, _ := diceroller.RollDetails("3d6-2")
@@ -155,6 +155,26 @@ prettifyOneFull := diceroller.PrettifyOneFull(rollDetails[0])
 fmt.Printf("%#v\n", prettifyOneFull)
 // "3d6-2: 6 + 2 + 1 (-2) = 7"
 ```
+
+
+`PrettifyHTML()`: PrettifyHTML takes in details of one or more rolls and outputs a 'pretty' string with HTML.
+
+```go
+rollDetails, _ := diceroller.RollDetails("3d6-2")
+prettifyHTML := diceroller.PrettifyHTML(rollDetails)
+fmt.Printf("%#v\n", prettifyHTML)
+// []string{"<strong>5 + 6 + 2 (-2) = 11</strong>"}
+```
+
+
+`PrettifyHTMLFull()`: PrettifyHTMLFull takes in details of one or more rolls and outputs a 'pretty' string with HTML, including the discovered roll.
+```go
+rollDetails, _ := diceroller.RollDetails("1d20", "3d6-2")
+prettifyHTMLFull := diceroller.PrettifyHTMLFull(rollDetails)
+fmt.Printf("%#v\n", prettifyHTMLFull)
+// []string{"<strong>1d20:</strong> <em>19</em>", "<strong>3d6-2:</strong> <em>3 + 6 + 3 (-2) = 10</em>"}
+```
+
 
 ## Full Example
 
